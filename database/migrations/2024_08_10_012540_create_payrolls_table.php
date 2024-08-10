@@ -9,19 +9,18 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('payrolls', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('tittle', 255)->nullable();
-            $table->string('year', 4);
-            $table->string('month', 50);
-            $table->string('file_uri', 255);
-            $table->foreignId('payroll_type_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            $table->string('name', 150);
+            $table->string('email', 100)->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password', 255);
+            $table->enum('status',['0', '1'])->default('1');
+            $table->rememberToken();
             $table->timestamps();
         });
-    
     }
 
     /**
