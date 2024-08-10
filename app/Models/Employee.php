@@ -13,4 +13,10 @@ class Employee extends Model
         'first_name',
         'last_name',
     ];
+
+    public function payrolls()
+    {
+        return $this->belongsToMany(Payroll::class);
+    }
+
 }
